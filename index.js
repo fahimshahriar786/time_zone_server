@@ -155,6 +155,20 @@ async function run() {
         console.log(result);
         res.send(result);
       });
+//POST API (Bookings )
+app.post("/bookings", async (req, res) => {
+  const newBooking = req.body;
+  const result = await bookingsCollection.insertOne(newBooking);
+  res.send(result);
+});
+
+//POST API (Testimonials )
+app.post("/testimonials", async (req, res) => {
+  const newBooking = req.body;
+  // console.log(newBooking);
+  const result = await testimonialCollection.insertOne(newBooking);
+  res.send(result);
+});
 
 
 
