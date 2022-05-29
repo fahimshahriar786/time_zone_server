@@ -193,6 +193,57 @@ app.delete("/Devices/:id", async (req, res) => {
   const result = await djiPackages.deleteOne(query);
   res.send(result);
 });
+// =================Update API====================
+app.put("/bookings/:id", async (req, res) => {
+  const id = req.params.id;
+  const newStatus = req.body;
+  const query = { _id: ObjectId(id) };
+  const options = { upsert: true };
+  const updateDoc = {
+    $set: {
+      data: newStatus.newData,
+    },
+  };
+  const result = await bookingsCollection.updateOne(
+    query,
+    updateDoc,
+    options
+  );
+  res.send(result);
+});
 
+//upsert Google user data
+app.put("/users", async (req, res) => {
+  const user = req.body;
+  const filter = { email: user.email };
+  const options = { upsert: true };
+  const updateDoc = { $set: user };
+  const result = await usersCollection.updateOne(
+    filter,
+    updateDoc,
+    options
+  );
+  res.json(result);
+});
+
+// add admin role
+app.put("/users/admin", async (req, res) => {
+  const user = req.body;
+  const filter = { email: user.email };
+  const updateDoc = { $set: { role: "admin" } };
+  const result = await usersCollection.updateOne(filter, updateDoc);
+  res.json(result);
+});
+});
+} finally {
+// await client.close();
+}
+}
+run().catch(console.dir);
+
+//run the server
+app.listen(port, () => {
+console.log(`Server is running at port ${port}`);
+});
 
       
