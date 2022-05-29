@@ -139,6 +139,11 @@ async function run() {
       //POST API (dji Package)
       
 
+      app.post("/Devices", async (req, res) => {
+        const newTours = req.body;
+        const result = await djiPackages.insertOne(newTours);
+        res.send(result);
+      });
 
 
 
