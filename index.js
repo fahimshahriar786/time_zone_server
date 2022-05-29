@@ -178,6 +178,21 @@ app.post("/testimonials", async (req, res) => {
       // ======================DELETE API ========================
      
 
+ //DELETE API(Bookings)
+ app.delete("/bookings/:id", async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: ObjectId(id) };
+  const result = await bookingsCollection.deleteOne(query);
+  res.send(result);
+});
+
+//DELETE API(drone)
+app.delete("/Devices/:id", async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: ObjectId(id) };
+  const result = await djiPackages.deleteOne(query);
+  res.send(result);
+});
 
 
       
