@@ -33,7 +33,10 @@ async function run() {
 
       // ==============GET API ====================
      
-
+ //GET API
+ app.get("/", (req, res) => {
+  res.send("Welcome to timeZone");
+});
 
 
 
