@@ -44,6 +44,10 @@ async function run() {
 
       //GET API (dji Package)
       
+      app.get("/Devices", async (req, res) => {
+        const result = await djiPackages.find({}).toArray();
+        res.send(result);
+      });
 
 
 
