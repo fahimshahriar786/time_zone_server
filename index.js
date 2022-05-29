@@ -127,6 +127,11 @@ async function run() {
       //GET (testimonials)
      
 
+      app.get("/testimonials", async (req, res) => {
+        const result = await testimonialCollection.find({}).toArray();
+        res.send(result);
+      });
+
 
 
 
