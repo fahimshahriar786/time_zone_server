@@ -113,6 +113,13 @@ async function run() {
 
       //GET Dynamic (products)
      
+      app.get("/Devices/:id", async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: ObjectId(id) };
+        const result = await djiPackages.findOne(query);
+        res.send(result);
+      });
+
 
 
 
